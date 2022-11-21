@@ -1,0 +1,299 @@
+{
+	"info": {
+		"_postman_id": "865c2b8c-faac-42c3-ae8d-c057f7779b0e",
+		"name": "TPLaComanda",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6327076"
+	},
+	"item": [
+		{
+			"name": "Crear Usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "ariel",
+							"type": "text"
+						},
+						{
+							"key": "clave",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "tipo",
+							"value": "cocineroasd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:666/usuario/crear",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"usuario",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Pedido",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "cliente",
+							"value": "juan",
+							"type": "text"
+						},
+						{
+							"key": "producto",
+							"value": "milanesa a caballo",
+							"type": "text"
+						},
+						{
+							"key": "cantidad",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "codigoTicket",
+							"value": "qc3jk",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:666/pedido/crear",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"pedido",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Ticket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id_mesa",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "id_mozo",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:666/ticket/crear",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"ticket",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Mesa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "codigo",
+							"value": "MES01",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:666/mesa/crear",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"mesa",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Producto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "milanesa a caballo",
+							"type": "text"
+						},
+						{
+							"key": "preparador",
+							"value": "cocinero",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:666/producto/crear",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"producto",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Usuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:666/usuario/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"usuario",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Pedidos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:666/pedido/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"pedido",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Mesas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:666/mesa/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"mesa",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Tickets",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:666/ticket/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"ticket",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Productos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:666/producto/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"producto",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
