@@ -6,7 +6,7 @@ use Slim\Psr7\Response;
 
 require_once './controllers/UsuarioController.php';
 
-class SoloAdminMiddleware
+class SoloMozoMiddleware
 {
     public function __invoke(Request $request, RequestHandler $handler): Response
     {
@@ -17,7 +17,7 @@ class SoloAdminMiddleware
 
         $datos = AutentificadorJWT::ObtenerPayLoad($token);
 
-        if($datos->data->tipo === 'socio')
+        if($datos->data->tipo === 'mozo' || $datos->data->tipo === 'socio')
         {
             $payload = json_encode(array("Estado:"=>"Autenticado.", "Tipo: "=>$datos->data->tipo));
             $response = $handler->handle($request);
@@ -26,7 +26,7 @@ class SoloAdminMiddleware
         }
         else
         {
-            $payload = json_encode(array("Estado:"=>"Rechazado", "Tipo del token:"=>$datos->data->tipo, "Detalle:"=>"No es socio"));
+            $payload = json_encode(array("Estado:"=>"Rechazado", "Tipo del token:"=>$datos->data->tipo, "Detalle:"=>"No es mozo"));
 
             $response = $response->withStatus(200);
         }

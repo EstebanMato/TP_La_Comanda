@@ -30,8 +30,9 @@ class VerificarTokenMiddleware
         {
             $response = $handler->handle($request);
         }
-        
-        $payload = json_encode(array('JWT:'=>$todoOk));
+        $data = AutentificadorJWT::ObtenerData($token);
+
+        $payload = json_encode(array('JWT:'=>$todoOk , "tipo:" => $data->tipo));
 
         $response->getBody()->write($payload);
         return $response->withHeader('Content-Type', 'application/json');

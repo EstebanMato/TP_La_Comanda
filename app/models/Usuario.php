@@ -28,6 +28,26 @@ class Usuario
 
         return $consulta->fetchAll(PDO::FETCH_CLASS, 'Usuario');
     }
+
+    public static function obtenerUsuario($nombre)
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT id, nombre, clave, tipo FROM usuarios WHERE nombre = :nombre");
+        $consulta->bindValue(':nombre', $nombre, PDO::PARAM_STR);
+        $consulta->execute();
+        
+        return $consulta->fetchObject('Usuario');
+    }
+
+    public static function obtenerUsuarioPorId($id)
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT id, nombre, clave, tipo FROM usuarios WHERE id = :id");
+        $consulta->bindValue(':id', $id, PDO::PARAM_STR);
+        $consulta->execute();
+        
+        return $consulta->fetchObject('Usuario');
+    }
 }
 
 ?>

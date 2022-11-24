@@ -14,6 +14,7 @@ class ProductoController extends Producto implements IApiUsable
     $producto->preparador = $parametros['preparador'];
 
     if(isset($_POST['nombre']) && !empty($_POST['nombre']) && isset($_POST['preparador']) && !empty($_POST['preparador'])){
+  
       if(UsuarioController::ValidarTipo($producto->preparador)){
         $producto->crearProducto();
         $payload = json_encode(array("mensaje" => "Alta exitosa"));

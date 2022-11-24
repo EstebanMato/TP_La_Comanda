@@ -46,6 +46,33 @@ class UsuarioController extends Usuario implements IApiUsable
       return false;
     }
   }
+
+  public static function Autenticar($request, $response)
+    {
+      $parametros = $request->getParsedBody();
+
+      $usr = new Usuario();
+      $usr->nombre = $parametros['nombre'];
+      $usr->tipo = $parametros['tipo'];
+      $usr->clave = $parametros['clave'];
+      
+      $usuario = Usuario::obtenerUsuario($usr->nombre);
+
+      
+      if($usuario){
+        if($usr->nombre == $usuario->nombre && password_verify($usr->clave, $usuario->clave) && $usuario->tipo == $usr->tipo)
+        {
+          return $usuario;
+        }
+        else
+        {
+          return NULL;
+        }
+      }else
+      {
+        return NULL;
+      }
+    }
 }
 
 ?>

@@ -19,6 +19,13 @@ require_once './controllers/MesaController.php';
 require_once './controllers/PedidoController.php';
 require_once './controllers/TicketController.php';
 require_once './controllers/ProductoController.php';
+require_once './controllers/TokensController.php';
+
+require_once './middlewares/VerificarTokenMiddleware.php';
+require_once './middlewares/SoloAdminMiddleware.php';
+require_once './middlewares/SoloMozoMiddleware.php';
+require_once './middlewares/ValidarModificacionPedidoMiddleware.php';
+
 
 // Load ENV
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -33,38 +40,49 @@ $app->addErrorMiddleware(true, true, true);
 // Add parse body
 $app->addBodyParsingMiddleware();
 
+//Login que retorna el token
+$app->group('/login', function (RouteCollectorProxy $group)
+{
+  $group->post('/crearToken', \TokensController::class . ':CrearToken');
+});
 
 $app->group('/usuario', function (RouteCollectorProxy $group)
 {
   $group->post('/crear', \UsuarioController::class . ':AltaUsuario');
   $group->get('/listar', \UsuarioController::class . ':ListarUsuarios');
-});
+})->add (new SoloAdminMiddleware);
 
 
 $app->group('/producto', function (RouteCollectorProxy $group)
 {
-  $group->post('/crear', \ProductoController::class . ':AltaProducto');
+  $group->post('/crear', \ProductoController::class . ':AltaProducto')->add (new SoloAdminMiddleware);
   $group->get('/listar', \ProductoController::class . ':ListarProductos');
 });
 
 
 $app->group('/mesa', function (RouteCollectorProxy $group)
 {
-  $group->post('/crear', \MesaController::class . ':AltaMesa');
+  $group->post('/crear', \MesaController::class . ':AltaMesa')->add (new SoloAdminMiddleware);
   $group->get('/listar', \MesaController::class . ':ListarMesas');
 });
 
 
 $app->group('/pedido', function (RouteCollectorProxy $group)
 {
-  $group->post('/crear', \PedidoController::class . ':AltaPedido');
+  $group->post('/crear', \PedidoController::class . ':AltaPedido')->add (new SoloMozoMiddleware);
   $group->get('/listar', \PedidoController::class . ':ListarPedidos');
-});
+  $group->post('/modificar', \PedidoController::class . ':ModificarPedido')->add (new ValidarModificacionPedidoMiddleware);
+})->add (new VerificarTokenMiddleware);
 
 $app->group('/ticket', function (RouteCollectorProxy $group)
 {
-  $group->post('/crear', \TicketController::class . ':AltaTicket');
+  $group->post('/crear', \TicketController::class . ':AltaTicket')->add (new SoloMozoMiddleware);
   $group->get('/listar', \TicketController::class . ':ListarTickets');
+});
+
+$app->group('/foto', function (RouteCollectorProxy $group)
+{
+  $group->post('/subir', \TicketController::class . ':SubirFoto')->add (new SoloMozoMiddleware);
 });
 
 

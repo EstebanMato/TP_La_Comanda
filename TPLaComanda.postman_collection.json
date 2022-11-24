@@ -1,0 +1,535 @@
+{
+	"info": {
+		"_postman_id": "865c2b8c-faac-42c3-ae8d-c057f7779b0e",
+		"name": "TPLaComanda",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6327076"
+	},
+	"item": [
+		{
+			"name": "Crear Usuario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "ezequiel",
+							"type": "text"
+						},
+						{
+							"key": "clave",
+							"value": "1234",
+							"type": "text"
+						},
+						{
+							"key": "tipo",
+							"value": "socio",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:666/usuario/crear",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"usuario",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Subir Foto",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "ticket",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "foto",
+							"type": "file",
+							"src": "fotoCenajpg.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:666/foto/subir",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"foto",
+						"subir"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Pedido",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "cliente",
+							"value": "gabriel",
+							"type": "text"
+						},
+						{
+							"key": "producto",
+							"value": "fideos con salsa",
+							"type": "text"
+						},
+						{
+							"key": "cantidad",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "codigoTicket",
+							"value": "0niz5",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:666/pedido/crear",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"pedido",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar Pedido",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "idPedido",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "tiempoRestante",
+							"value": "25",
+							"type": "text"
+						},
+						{
+							"key": "estado",
+							"value": "en preparacion",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:666/pedido/modificar",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"pedido",
+						"modificar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Finalizar pedido",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "idPedido",
+							"value": "16",
+							"type": "text"
+						},
+						{
+							"key": "tiempoRestante",
+							"value": "25",
+							"type": "text"
+						},
+						{
+							"key": "estado",
+							"value": "listo para servir",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:666/pedido/modificar",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"pedido",
+						"modificar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Ticket",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_mesa",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "id_mozo",
+							"value": "13",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:666/ticket/crear",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"ticket",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear token Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "esteban",
+							"type": "text"
+						},
+						{
+							"key": "clave",
+							"value": "1234",
+							"type": "text"
+						},
+						{
+							"key": "tipo",
+							"value": "socio",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:666/login/crearToken",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"login",
+						"crearToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Mesa",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "codigo",
+							"value": "MES04",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:666/mesa/crear",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"mesa",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Producto",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nombre",
+							"value": "hamburguesa",
+							"type": "text"
+						},
+						{
+							"key": "preparador",
+							"value": "cocinero",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:666/producto/crear",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"producto",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Usuarios",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:666/usuario/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"usuario",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Pedidos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:666/pedido/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"pedido",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Mesas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:666/mesa/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"mesa",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Tickets",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:666/ticket/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"ticket",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Productos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{JWT}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:666/producto/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "666",
+					"path": [
+						"producto",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -18,3 +18,5 @@ ALTER TABLE `usuarios`
 ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
+
+  INSERT INTO `usuarios`(`id`, `nombre`, `clave`, `tipo`) VALUES ('esteban','$2y$10$B8QYO97oM/3chYdI/US91OjouHpxN89czuW6G/OrYC2ueK3p8PUIK','socio');

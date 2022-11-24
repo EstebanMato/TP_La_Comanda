@@ -36,5 +36,16 @@ class Producto
 
         return $consulta->fetchAll(PDO::FETCH_CLASS, 'Producto');
     }
+
+    public static function obtenerProductoPorId($id)
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT id, nombre, preparador FROM productos WHERE id = :id");
+        $consulta->bindValue(':id', $id, PDO::PARAM_STR);
+        $consulta->execute();
+
+        return $consulta->fetchAll(PDO::FETCH_CLASS, 'Producto');
+    }
+    
 }
 ?>

@@ -6,7 +6,7 @@ use Slim\Psr7\Response;
 
 require_once './controllers/UsuarioController.php';
 
-class SoloAdminMiddleware
+class ValidarModificacionPedidoMiddleware
 {
     public function __invoke(Request $request, RequestHandler $handler): Response
     {
@@ -16,22 +16,20 @@ class SoloAdminMiddleware
         $token = trim(explode("Bearer", $header)[1]);
 
         $datos = AutentificadorJWT::ObtenerPayLoad($token);
+        $parametros = $request->getParsedBody();
+        $pedido = Pedido::obtenerPorId($parametros['idPedido']);
 
-        if($datos->data->tipo === 'socio')
-        {
-            $payload = json_encode(array("Estado:"=>"Autenticado.", "Tipo: "=>$datos->data->tipo));
+
+        $producto = Producto::obtenerProductoPorId($pedido[0]->id_producto);
+
+
+        if(!strcmp($producto[0]->preparador,$datos->data->tipo) || !strcmp("socio",$datos->data->tipo) ){
             $response = $handler->handle($request);
-
-            $response = $response->withStatus(200);
-        }
-        else
-        {
-            $payload = json_encode(array("Estado:"=>"Rechazado", "Tipo del token:"=>$datos->data->tipo, "Detalle:"=>"No es socio"));
-
-            $response = $response->withStatus(200);
+        }else{
+            $payload = json_encode(array("ERROR:"=>"No autorizado", "Mensaje:"=>"Perfil distinto al requerido para modificar esta solicitud"));
+            $response->getBody()->write($payload);
         }
 
-    $response->getBody()->write($payload);
 
     return $response->withHeader('Content-Type', 'application/json');
     }   

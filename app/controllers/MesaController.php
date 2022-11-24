@@ -13,7 +13,6 @@ class MesaController extends Mesa implements IApiUsable
     $mesa = new Mesa();
     $mesa->codigo = $parametros['codigo'];
     $mesa->estado = "Cliente esperando pedido";
-    $mesa->foto = "ruta foto";
 
     if(isset($_POST['codigo']) && !empty($_POST['codigo'])){
         $mesa->crearMesa();
