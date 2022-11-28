@@ -19,11 +19,10 @@ class ValidarModificacionPedidoMiddleware
         $parametros = $request->getParsedBody();
         $pedido = Pedido::obtenerPorId($parametros['idPedido']);
 
-
         $producto = Producto::obtenerProductoPorId($pedido[0]->id_producto);
 
 
-        if(!strcmp($producto[0]->preparador,$datos->data->tipo) || !strcmp("socio",$datos->data->tipo) ){
+        if(!strcmp($producto[0]->preparador,$datos->data->tipo) || !strcmp("socio",$datos->data->tipo) || !strcmp("mozo",$datos->data->tipo) ){
             $response = $handler->handle($request);
         }else{
             $payload = json_encode(array("ERROR:"=>"No autorizado", "Mensaje:"=>"Perfil distinto al requerido para modificar esta solicitud"));

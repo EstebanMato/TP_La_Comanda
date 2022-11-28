@@ -48,5 +48,16 @@ class Mesa
 
         return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mesa');
     }
-}/*UPDATE `mesas` SET `estado` = 'Disponible' WHERE `mesas`.`id` = 3;*/
+
+    public static function cambiarEstadoMesa($estado, $codigo)
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("UPDATE mesas SET estado = :estado WHERE mesas.codigo = :codigo");
+        $consulta->bindValue(':codigo', $codigo, PDO::PARAM_STR);
+        $consulta->bindValue(':estado', $estado, PDO::PARAM_STR);
+        $consulta->execute();
+
+        return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mesa');
+    }
+}
 ?>

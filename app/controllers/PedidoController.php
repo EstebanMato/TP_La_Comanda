@@ -24,7 +24,7 @@ class PedidoController extends Pedido implements IApiUsable
       $producto = new Producto();
       $producto = Producto::obtenerProductoPorNombre($parametros['producto']);
 
-      if($ticket && $producto){
+      if($ticket && $producto && !strcmp($ticket[0]->estado,"abierto")){
 
         $pedido = new pedido();
         $pedido->id_ticket = $parametros['codigoTicket'];
@@ -33,7 +33,7 @@ class PedidoController extends Pedido implements IApiUsable
         $pedido->id_producto = $producto[0]->id;
         $pedido->id_mesa = $ticket[0]->id_mesa;
         $pedido->tiempo_restante = "0";
-        $pedido->estado = "abierto";
+        $pedido->estado = "pendiente";
         
         $cantidad = $parametros['cantidad'];
         for($i=0; $i<$cantidad; $i++){
@@ -64,8 +64,13 @@ class PedidoController extends Pedido implements IApiUsable
 
       $lista = Pedido::obtenerTodos();
       $payload = json_encode(array("listaPedidos" => $lista));
+    }else if(!strcmp($data->tipo , "mozo") ){
+      $estado = $_GET['estado'];
+      $lista = Pedido::obtenerPorEstado($estado);
+      $payload = json_encode(array("listaPedidos" => $lista));
     }else{
-      $lista = Pedido::obtenerPorTipo($data->tipo);
+      $estado = $_GET['estado'];
+      $lista = Pedido::obtenerPorTipo($data->tipo, $estado);
       $payload = json_encode(array("listaPedidos" => $lista));
     }
 

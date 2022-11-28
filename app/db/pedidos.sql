@@ -11,7 +11,7 @@ CREATE TABLE `pedidos` (
   `id_mozo` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `id_producto` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `id_mesa` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `tiempo_restante` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `tiempo_restante` int(25) NOT NULL,
   `estado` varchar(250) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

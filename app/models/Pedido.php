@@ -39,14 +39,28 @@ class Pedido
         return $consulta->fetchAll(PDO::FETCH_CLASS, 'Pedido');
     }
 
-    public static function obtenerPorTipo($tipo)
+    public static function obtenerPorEstado($estado)
     {
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
         $consulta = $objAccesoDatos->prepararConsulta("SELECT P.id, id_ticket, cliente, id_mozo, id_producto, PRO.nombre, id_mesa, tiempo_restante, estado 
                                                         FROM pedidos P, productos PRO
-                                                        WHERE P.id_producto = PRO.id && PRO.preparador = :tipo");
+                                                        WHERE P.id_producto = PRO.id && P.estado = :estado");
+        $consulta->bindValue(':estado', $estado, PDO::PARAM_STR);
+
+        $consulta->execute();
+
+        return $consulta->fetchAll(PDO::FETCH_CLASS, 'Pedido');
+    }
+
+    public static function obtenerPorTipo($tipo, $estado)
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT P.id, id_ticket, cliente, id_mozo, id_producto, PRO.nombre, id_mesa, tiempo_restante, estado 
+                                                        FROM pedidos P, productos PRO
+                                                        WHERE P.id_producto = PRO.id && PRO.preparador = :tipo && P.estado = :estado");
 
         $consulta->bindValue(':tipo', $tipo, PDO::PARAM_STR);
+        $consulta->bindValue(':estado', $estado, PDO::PARAM_STR);
 
         $consulta->execute();
 
@@ -56,9 +70,23 @@ class Pedido
     public static function obtenerPorId($id)
     {
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
-        $consulta = $objAccesoDatos->prepararConsulta("SELECT id, id_ticket, cliente, id_mozo, id_producto, id_mesa, tiempo_restante, estado 
-                                                        FROM pedidos
-                                                        WHERE id = :id");
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT P.id, PRO.nombre, id_ticket, cliente, id_mozo, id_producto, id_mesa, tiempo_restante, estado 
+                                                        FROM pedidos P, productos PRO
+                                                        WHERE P.id = :id && id_producto = PRO.id");
+
+        $consulta->bindValue(':id', $id, PDO::PARAM_STR);
+
+        $consulta->execute();
+
+        return $consulta->fetchAll(PDO::FETCH_CLASS, 'Pedido');
+    }
+
+    public static function obtenerPorIdTicket($id)
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT P.id, PRO.nombre, id_ticket, cliente, id_mozo, id_producto, id_mesa, tiempo_restante, estado 
+                                                        FROM pedidos P, productos PRO
+                                                        WHERE id_ticket = :id && id_producto = PRO.id");
 
         $consulta->bindValue(':id', $id, PDO::PARAM_STR);
 
@@ -79,6 +107,26 @@ class Pedido
         $consulta->execute();
 
         return $consulta->fetchAll(PDO::FETCH_CLASS, 'Pedido');
+    }
+
+    public static function consultarTiempoRestante($codigo)
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT MAX(tiempo_restante) AS total FROM pedidos WHERE id_ticket = :codigo");
+        $consulta->bindValue(':codigo', $codigo, PDO::PARAM_STR);
+        $consulta->execute();
+
+        return $consulta->fetchAll();;
+    }
+
+    public static function obtenerPrecio($codigo)
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT SUM(precio) AS total FROM pedidos, productos WHERE id_ticket = :codigo && id_producto = productos.id");
+        $consulta->bindValue(':codigo', $codigo, PDO::PARAM_STR);
+        $consulta->execute();
+
+        return $consulta->fetchAll();;
     }
 }
 ?>

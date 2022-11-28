@@ -12,8 +12,9 @@ class ProductoController extends Producto implements IApiUsable
     $producto = new producto();
     $producto->nombre = $parametros['nombre'];
     $producto->preparador = $parametros['preparador'];
+    $producto->precio = $parametros['precio'];
 
-    if(isset($_POST['nombre']) && !empty($_POST['nombre']) && isset($_POST['preparador']) && !empty($_POST['preparador'])){
+    if(isset($_POST['nombre']) && !empty($_POST['nombre']) && isset($_POST['preparador']) && !empty($_POST['preparador']) && isset($_POST['precio']) && !empty($_POST['precio'])){
   
       if(UsuarioController::ValidarTipo($producto->preparador)){
         $producto->crearProducto();

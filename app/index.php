@@ -15,6 +15,7 @@ require __DIR__ . '/../vendor/autoload.php';
 require_once './db/AccesoDatos.php';
 
 require_once './controllers/UsuarioController.php';
+require_once './controllers/EncuestaController.php';
 require_once './controllers/MesaController.php';
 require_once './controllers/PedidoController.php';
 require_once './controllers/TicketController.php';
@@ -64,6 +65,8 @@ $app->group('/mesa', function (RouteCollectorProxy $group)
 {
   $group->post('/crear', \MesaController::class . ':AltaMesa')->add (new SoloAdminMiddleware);
   $group->get('/listar', \MesaController::class . ':ListarMesas');
+  $group->get('/listarMasUsada', \MesaController::class . ':ListarMasUsada');
+  $group->post('/modificar', \MesaController::class . ':ModificarMesa')->add (new SoloMozoMiddleware);
 });
 
 
@@ -77,12 +80,23 @@ $app->group('/pedido', function (RouteCollectorProxy $group)
 $app->group('/ticket', function (RouteCollectorProxy $group)
 {
   $group->post('/crear', \TicketController::class . ':AltaTicket')->add (new SoloMozoMiddleware);
+  $group->post('/cerrar', \TicketController::class . ':CerrarTicket')->add (new SoloAdminMiddleware);
+  $group->post('/facturar', \TicketController::class . ':FacturarTicket')->add (new SoloMozoMiddleware);
   $group->get('/listar', \TicketController::class . ':ListarTickets');
+  $group->get('/consultar/{codigo}', \TicketController::class . ':ConsultarTicket');
 });
 
 $app->group('/foto', function (RouteCollectorProxy $group)
 {
   $group->post('/subir', \TicketController::class . ':SubirFoto')->add (new SoloMozoMiddleware);
+});
+
+$app->group('/encuesta', function (RouteCollectorProxy $group)
+{
+  $group->post('/calificar', \EncuestaController::class . ':AltaEncuesta');
+  $group->get('/listar', \EncuestaController::class . ':ListarEncuestas');
+  $group->post('/exportarCSV', \EncuestaController::class . ':ExportarEncuestaCSV');
+  $group->post('/impotarCSV', \EncuestaController::class . ':ImportarEncuestaCSV');
 });
 
 

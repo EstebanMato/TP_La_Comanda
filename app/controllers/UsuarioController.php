@@ -40,7 +40,7 @@ class UsuarioController extends Usuario implements IApiUsable
 
   public static function ValidarTipo($tipo)
   {
-    if(!strcmp($tipo,"bartender") || !strcmp($tipo,"mozo") || !strcmp($tipo,"cervecero") || !strcmp($tipo,"cocinero") || !strcmp($tipo,"socio")){
+    if(!strcmp($tipo,"bartender") || !strcmp($tipo,"mozo") || !strcmp($tipo,"cervecero") || !strcmp($tipo,"cocinero") || !strcmp($tipo,"socio") || !strcmp($tipo,"pastelero")){
       return true;
     }else{
       return false;

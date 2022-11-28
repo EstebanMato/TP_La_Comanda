@@ -1,6 +1,7 @@
 <?php
 
 require_once './models/Ticket.php';
+require_once './models/Pedido.php';
 require_once './controllers/MoverFotosController.php';
 require_once './interfaces/IApiUsable.php';
 
@@ -20,8 +21,9 @@ class TicketController extends Ticket implements IApiUsable
 
       $ticket->id_mesa = $parametros['id_mesa'];
       $ticket->id_mozo = $parametros['id_mozo'];
-      $ticket->estado = "Abierto";
+      $ticket->estado = "abierto";
       $ticket->foto = "vacio";
+      $ticket->precionFinal = 0;
 
       $mozo = Usuario::obtenerUsuarioPorId($ticket->id_mozo);
  
@@ -41,6 +43,18 @@ class TicketController extends Ticket implements IApiUsable
     return $response->withHeader('Content-Type', 'application/json');
   }
 
+  public static function ConsultarTicket($request, $response, $args)
+  {
+
+    $ticket = Pedido::consultarTiempoRestante($args['codigo']);
+    $pedidos = Pedido::obtenerPorIdTicket($args['codigo']);
+
+    $payload = json_encode(array("TiempoRestantePromedio" =>$ticket[0], "pedidos" => $pedidos));
+
+    $response->getBody()->write($payload);
+    return $response->withHeader('Content-Type', 'application/json');
+  }
+
   public static function ListarTickets($request, $response)
   {
     $lista = Ticket::obtenerTodos();
@@ -54,14 +68,55 @@ class TicketController extends Ticket implements IApiUsable
   {
     $parametros = $request->getParsedBody();
     $ticket = $parametros['ticket'];
-    $foto = "./Fotos/".$_FILES['foto']['name'];
+    $rutaFoto = "./Fotos/".$ticket .$_FILES['foto']['name'];
 
-    var_dump($foto);
-    var_dump($ticket);
-    Ticket::insertarFoto($ticket, $foto);
-    new MoverFotos("./Fotos/", $_FILES, $_FILES['foto']['name']);
+    Ticket::insertarFoto($ticket, $rutaFoto);
+    new MoverFotos("./Fotos/", $_FILES, $ticket . $_FILES['foto']['name'] );
     $payload = json_encode(array("Mensaje" => "Foto subida correctamente"));
 
+    $response->getBody()->write($payload);
+    return $response->withHeader('Content-Type', 'application/json');
+  }
+
+  public static function FacturarTicket($request, $response)
+  {
+    $parametros = $request->getParsedBody();
+
+    $ticket = Ticket::obtenerTicket($parametros['codigoTicket']);
+    
+    if($ticket){
+      $ticket[0]->precioFinal = (Pedido::obtenerPrecio($ticket[0]->codigo))[0][0];
+      
+      Ticket::cobrarTicket($parametros['codigoTicket'] , $ticket[0]->precioFinal);
+      Mesa::cambiarEstado("cliente pagando",$ticket[0]->id_mesa);
+
+      $payload = json_encode(array("Precio Final" => $ticket[0]->precioFinal));
+    }else{
+      
+      $payload = json_encode(array("ERROR" => "Ticket invalido"));
+    }
+  
+
+    $response->getBody()->write($payload);
+    return $response->withHeader('Content-Type', 'application/json');
+  }
+
+  public static function CerrarTicket($request, $response)
+  {
+    $parametros = $request->getParsedBody();
+
+    $ticket = Ticket::obtenerTicket($parametros['codigoTicket']);
+    
+    if($ticket){
+      
+      Mesa::cambiarEstado("cerrada",$ticket[0]->id_mesa);
+
+      $payload = json_encode(array("Mensaje" =>"Mesa cerrada"));
+    }else{
+      
+      $payload = json_encode(array("ERROR" => "Ticket invalido"));
+    }
+  
     $response->getBody()->write($payload);
     return $response->withHeader('Content-Type', 'application/json');
   }

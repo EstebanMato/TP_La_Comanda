@@ -1,19 +1,62 @@
 {
-    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjkwNzU4MjksImV4cCI6MTY2OTEzNTgyOSwiYXVkIjoiY2U0MDMzMDk0ZTkxM2I2OTNjNDg3NGI2Njg2YjAyMWRkZDU5ZTQ2MiIsImRhdGEiOnsibm9tYnJlIjoiYXJpZWwiLCJ0aXBvIjoiY29jaW5lcm8ifSwiYXBwIjoiVGVzdCBKV1QifQ.HuaKidzuCvGFVeyG9gPBJ11kD1WvUS_otyzafBG7yl8",
+    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1NTgxMTQsImV4cCI6MTY2OTYxODExNCwiYXVkIjoiY2U0MDMzMDk0ZTkxM2I2OTNjNDg3NGI2Njg2YjAyMWRkZDU5ZTQ2MiIsImRhdGEiOnsibm9tYnJlIjoiYXJpZWwiLCJ0aXBvIjoiY29jaW5lcm8ifSwiYXBwIjoiVGVzdCBKV1QifQ.WpX9GIVU1zonB_C5--Fy0ITJhBLLzTPF0MEtGYkBLaA",
     "tipo": "cocinero"
 }
 
 {
-    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjkyNDcxMDUsImV4cCI6MTY2OTMwNzEwNSwiYXVkIjoiY2U0MDMzMDk0ZTkxM2I2OTNjNDg3NGI2Njg2YjAyMWRkZDU5ZTQ2MiIsImRhdGEiOnsibm9tYnJlIjoiZXN0ZWJhbiIsInRpcG8iOiJzb2NpbyJ9LCJhcHAiOiJUZXN0IEpXVCJ9.dGqfYTanIuNnzHhOolWm1qCNEJooEyjabjXuzjVMGYQ",
+    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1NTgwNzUsImV4cCI6MTY2OTYxODA3NSwiYXVkIjoiY2U0MDMzMDk0ZTkxM2I2OTNjNDg3NGI2Njg2YjAyMWRkZDU5ZTQ2MiIsImRhdGEiOnsibm9tYnJlIjoiZXN0ZWJhbiIsInRpcG8iOiJzb2NpbyJ9LCJhcHAiOiJUZXN0IEpXVCJ9.iK_iG7YrdmtzBdGpN5taXFMhtqFFgPh4PRQ21VIj8yA",
     "tipo": "socio"
 }
 
 {
-    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjkyMzk3MTMsImV4cCI6MTY2OTI5OTcxMywiYXVkIjoiY2U0MDMzMDk0ZTkxM2I2OTNjNDg3NGI2Njg2YjAyMWRkZDU5ZTQ2MiIsImRhdGEiOnsibm9tYnJlIjoibmFsYSIsInRpcG8iOiJtb3pvIn0sImFwcCI6IlRlc3QgSldUIn0.22fW3PQmtrreMMsa-UCa0Fc8uZiofI5cf7YR0GerMAw",
+    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1NTgxMDQsImV4cCI6MTY2OTYxODEwNCwiYXVkIjoiY2U0MDMzMDk0ZTkxM2I2OTNjNDg3NGI2Njg2YjAyMWRkZDU5ZTQ2MiIsImRhdGEiOnsibm9tYnJlIjoidmVybyIsInRpcG8iOiJtb3pvIn0sImFwcCI6IlRlc3QgSldUIn0.yE38C2zpIy2R092tl621b1wIxp5tMboo0NL7rM5PYzI",
     "tipo": "mozo"
 }
 
 {
-    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjkyMzk2ODcsImV4cCI6MTY2OTI5OTY4NywiYXVkIjoiY2U0MDMzMDk0ZTkxM2I2OTNjNDg3NGI2Njg2YjAyMWRkZDU5ZTQ2MiIsImRhdGEiOnsibm9tYnJlIjoiam9yZ2UiLCJ0aXBvIjoiY2VydmVjZXJvIn0sImFwcCI6IlRlc3QgSldUIn0.SirE1UaI7VnUmRNrDnUepx9qTc9o3KqTIKmI3nRy8l4",
+    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1NTgwOTIsImV4cCI6MTY2OTYxODA5MiwiYXVkIjoiY2U0MDMzMDk0ZTkxM2I2OTNjNDg3NGI2Njg2YjAyMWRkZDU5ZTQ2MiIsImRhdGEiOnsibm9tYnJlIjoiam9yZ2UiLCJ0aXBvIjoiY2VydmVjZXJvIn0sImFwcCI6IlRlc3QgSldUIn0.N4DhIBdsSzGVzTQuYxMOD1NPSPmHFLN5rYhYOVTsQCk",
     "tipo": "cervecero"
 }
+
+{
+    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1NTgzNjMsImV4cCI6MTY2OTYxODM2MywiYXVkIjoiY2U0MDMzMDk0ZTkxM2I2OTNjNDg3NGI2Njg2YjAyMWRkZDU5ZTQ2MiIsImRhdGEiOnsibm9tYnJlIjoiam9ueSIsInRpcG8iOiJiYXJ0ZW5kZXIifSwiYXBwIjoiVGVzdCBKV1QifQ.ji8E2-axlx03hWa2ZhvoPNHtwaMgmEQefAMuB6Bzc8E",
+    "tipo": "bartender"
+}
+
+{
+    "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1NTgzNzIsImV4cCI6MTY2OTYxODM3MiwiYXVkIjoiY2U0MDMzMDk0ZTkxM2I2OTNjNDg3NGI2Njg2YjAyMWRkZDU5ZTQ2MiIsImRhdGEiOnsibm9tYnJlIjoiYW5kcmVhIiwidGlwbyI6InBhc3RlbGVybyJ9LCJhcHAiOiJUZXN0IEpXVCJ9._dtYzl04wwrt9iviPUfTTKpr8hCfwl_VrkyVnPzNi8A",
+    "tipo": "pastelero"
+}
+
+CIRCUITO ENTERO TICKET
+Crear Ticket : rj3tc
+Crear pedido
+        {
+            "id": 29,
+            "id_ticket": "rj3tc",
+            "cliente": "Gallardo",
+            "id_mozo": "2",
+            "id_producto": "11",
+            "id_mesa": "3",
+            "tiempo_restante": 0,
+            "estado": "abierto",
+            "nombre": "cerveza rubia"
+        },
+        {
+            "id": 30,
+            "id_ticket": "rj3tc",
+            "cliente": "Gallardo",
+            "id_mozo": "2",
+            "id_producto": "6",
+            "id_mesa": "3",
+            "tiempo_restante": 0,
+            "estado": "abierto",
+            "nombre": "hamburguesa"
+        }
+    ]
+Listar pedidos
+
+Select  id_mesa From tickets
+Group By id_mesa Having Count(*) > 1;
+
+SELECT COUNT (*) FROM tickets;
